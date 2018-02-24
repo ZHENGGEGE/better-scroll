@@ -72,10 +72,12 @@ export class BScroll extends EventEmitter {
     this.options.preventDefault = !this.options.eventPassthrough && this.options.preventDefault;
 
     // If you want eventPassthrough I have to lock one of the axes
+    //如果你想要eventPassthrough，我必须锁定一个坐标轴。
     this.options.scrollX = this.options.eventPassthrough === 'horizontal' ? false : this.options.scrollX;
     this.options.scrollY = this.options.eventPassthrough === 'vertical' ? false : this.options.scrollY;
 
     // With eventPassthrough we also need lockDirection mechanism
+    //有了eventPassthrough，我们还需要lockDirection机制。
     this.options.freeScroll = this.options.freeScroll && !this.options.eventPassthrough;
     this.options.directionLockThreshold = this.options.eventPassthrough ? 0 : this.options.directionLockThreshold;
 
@@ -250,6 +252,7 @@ export class BScroll extends EventEmitter {
 
     let i = 0;
     // Check if we exceeded the snap threshold
+    //检查我们是否超过了临界值。
     if (Math.abs(x - this.absStartX) <= this.snapThresholdX &&
       Math.abs(y - this.absStartY) <= this.snapThresholdY) {
       return this.currentPage;
@@ -474,6 +477,7 @@ export class BScroll extends EventEmitter {
     let newY = this.y + deltaY;
 
     // Slow down or stop if outside of the boundaries
+    //如果超出了界限，放慢速度或停止。
     if (newX > 0 || newX < this.maxScrollX) {
       if (this.options.bounce) {
         newX = this.x + deltaX / 3;
@@ -547,6 +551,7 @@ export class BScroll extends EventEmitter {
     });
 
     // reset if we are outside of the boundaries
+    //如果我们在边界之外，重新设置。
     if (this.resetPosition(this.options.bounceTime, ease.bounce)) {
       return;
     }
