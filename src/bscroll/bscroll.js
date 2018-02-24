@@ -437,11 +437,13 @@ export class BScroll extends EventEmitter {
     let timestamp = +new Date();
 
     // We need to move at least 15 pixels for the scrolling to initiate
+    //我们需要移动至少15个像素来启动。
     if (timestamp - this.endTime > this.options.momentumLimitTime && (absDistY < this.options.momentumLimitDistance && absDistX < this.options.momentumLimitDistance)) {
       return;
     }
 
     // If you are scrolling in one direction lock the other
+    //如果你在一个方向上滚动锁定另一个方向。
     if (!this.directionLocked && !this.options.freeScroll) {
       if (absDistX > absDistY + this.options.directionLockThreshold) {
         this.directionLocked = 'h';		// lock horizontally
